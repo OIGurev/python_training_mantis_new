@@ -17,7 +17,7 @@ class SessionHelper:
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_xpath("(//a[contains(@href, '#')])[2]").click()
-        wd.find_element_by_xpath("//a[contains(@href, '/mantisbt-2.24.4/logout_page.php')]").click()
+        wd.find_element_by_xpath("//a[contains(@href, '/logout_page.php')]").click()
         wd.find_element_by_name("username")
 
     def is_logged_in(self):
