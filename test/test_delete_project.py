@@ -12,11 +12,11 @@ def check_empty_filling(app):
         app.project.create(random_string("project_name_", 15))
 
 
-def test_del_project(app):
+def test_del_project(app, config):
     check_empty_filling(app)
-    old_projects = app.project.get_list()
+    old_projects = app.soap.get_project_list(config["web"]["username"], config["web"]["password"], config["web"]["baseURL"])
     random_project = random.choice(old_projects)
     app.project.delete(random_project.id)
-    new_projects = app.project.get_list()
+    new_projects = app.soap.get_project_list(config["web"]["username"], config["web"]["password"], config["web"]["baseURL"])
     old_projects.remove(random_project)
     assert old_projects == new_projects
